@@ -9,12 +9,12 @@ namespace Infrastructure
         private readonly Dictionary<Type, IService> _services = new();
 
 
-        public void Register<TType>(IService service) where TType : class, IService, new()
+        public void Register<TType>(IService service) where TType : class, IService
         {
             _services.Add(typeof(TType), service);
         }
 
-        public TType Resolve<TType>() where TType : class, IService, new()
+        public TType Resolve<TType>() where TType : class, IService
         {
             if (!_services.TryGetValue(typeof(TType), out IService service))
             {

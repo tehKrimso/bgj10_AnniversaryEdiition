@@ -1,10 +1,15 @@
 using System;
+using Behaviours.Grid;
 using UnityEngine;
 
 namespace Infrastructure
 {
     public class Bootstrapper : MonoBehaviour
     {
+        [Header("Grid Settings")]
+        public TilePrefabsSettings  tilePrefabs;
+        public MapTileLayoutSettings  gridLayoutSettings;
+        
         public static Bootstrapper Instance { get; private set; }
 
         public ServiceLocator Services;
@@ -17,21 +22,11 @@ namespace Infrastructure
             RegisterServices();
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
-
         private void RegisterServices()
         {
             Services.Register<GameLoopController>(new GameLoopController());
+            Services.Register<TilesFactory>(new TilesFactory(tilePrefabs, gridLayoutSettings));
+            Services.Register<PlayerInputService>(new PlayerInputService());
         }
     }
 }
