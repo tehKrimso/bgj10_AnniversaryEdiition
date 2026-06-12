@@ -8,7 +8,7 @@ namespace Behaviours
     {
         private void Start()
         {
-            Bootstrapper.Instance.Services.Resolve<GameLoopController>().Test();
+            
         }
     }
 }

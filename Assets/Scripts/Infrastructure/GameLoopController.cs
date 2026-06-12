@@ -1,12 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using Behaviours.Enemies;
+using Behaviours.Grid;
+using UnityEngine;
 
 namespace Infrastructure
 {
-    public class GameLoopController : IService
+    public class GameLoopController : MonoBehaviour,IService
     {
-        public void Test()
+        [SerializeField]
+        private GridMap _gridMap;
+        [SerializeField]
+        private EnemySpawnerController _spawnerController;
+
+        private void Start()
         {
-            Debug.Log("Test");
+            _gridMap.Init();
+            _spawnerController.Init();
         }
     }
 }

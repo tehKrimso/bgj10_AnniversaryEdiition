@@ -16,6 +16,8 @@ namespace Behaviours.Grid
         {
             _gridPosition = new Vector2Int(x, y);
         }
+        
+        public Vector2Int GetGridPos() => _gridPosition;
     }
 
 

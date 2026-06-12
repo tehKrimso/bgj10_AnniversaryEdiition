@@ -24,7 +24,6 @@ namespace Infrastructure
 
         private void RegisterServices()
         {
-            Services.Register<GameLoopController>(new GameLoopController());
             Services.Register<TilesFactory>(new TilesFactory(tilePrefabs, gridLayoutSettings));
             Services.Register<PlayerInputService>(new PlayerInputService());
         }

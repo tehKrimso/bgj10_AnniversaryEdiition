@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1689010094358930849}
   - component: {fileID: 3396939838573062650}
   m_Layer: 0
-  m_Name: GripMap
+  m_Name: GridMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,8 +44,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a454b8a5eac0e23469179ec17f4c38cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 5
-  Height: 5
+  _enemySpawnerController: {fileID: 2228842637371777490}
+--- !u!1 &6319712908349675222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5129199395155886890}
+  - component: {fileID: 2228842637371777490}
+  m_Layer: 0
+  m_Name: EnemySpawnerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5129199395155886890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319712908349675222}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.6557307, y: 5.796677, z: 2.1584444}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5265692754779902632}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2228842637371777490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319712908349675222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1ab0dfc2ab4ada8589cd1b744e6095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6591836203156651141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8341946693738406774}
+  - component: {fileID: 807166484795815507}
+  m_Layer: 0
+  m_Name: GameLoopController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8341946693738406774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591836203156651141}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5265692754779902632}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &807166484795815507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591836203156651141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e93f5b25b7468abe787c16f95ff87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridMap: {fileID: 3396939838573062650}
+  _spawnerController: {fileID: 2228842637371777490}
 --- !u!1 &7086472129187295844
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +165,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8341946693738406774}
   - {fileID: 1689010094358930849}
+  - {fileID: 5129199395155886890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8972906132919166900
@@ -91,5 +182,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3e7b26be6c8b749812f7a606ed4725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefabs: {fileID: 0}
-  gridLayoutSettings: {fileID: 0}
+  tilePrefabs: {fileID: 11400000, guid: 3d429655e2c0cbb49aa5f13b732c8445, type: 2}
+  gridLayoutSettings: {fileID: 11400000, guid: aad597d02965e0d448a908c64df40253, type: 2}

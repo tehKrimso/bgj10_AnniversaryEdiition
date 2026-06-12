@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Behaviours.Enemies;
 using Infrastructure;
 using UnityEngine;
 
@@ -8,16 +9,14 @@ namespace Behaviours.Grid
     public class GridMap : MonoBehaviour
     {
         [SerializeField]
-        private int Width;
-        [SerializeField]
-        private int Height;
-
+        private EnemySpawnerController _enemySpawnerController;
+        
         private TileBase[,] _tiles;
 
         private List<TileBase> buildableTiles;
         private TileBase centerTile;
 
-        private void Start()
+        public void Init()
         {
             _tiles = Bootstrapper.Instance.Services.Resolve<TilesFactory>().BuildGrid();
         }
