@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e93f5b25b7468abe787c16f95ff87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fightCyclesSettings: {fileID: 11400000, guid: 162929d891b618149b20544f5ff22da9, type: 2}
   _gridMap: {fileID: 3396939838573062650}
   _spawnerController: {fileID: 2228842637371777490}
 --- !u!1 &7086472129187295844

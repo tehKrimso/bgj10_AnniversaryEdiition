@@ -1,4 +1,5 @@
 using System;
+using Behaviours.Enemies;
 using Behaviours.Grid;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ namespace Infrastructure
         [Header("Grid Settings")]
         public TilePrefabsSettings  tilePrefabs;
         public MapTileLayoutSettings  gridLayoutSettings;
+
+        [Header("Enemies Settings")] 
+        public EnemyPrefabsSettings enemyPrefabsSettings;
         
         public static Bootstrapper Instance { get; private set; }
 
@@ -25,6 +29,7 @@ namespace Infrastructure
         private void RegisterServices()
         {
             Services.Register<TilesFactory>(new TilesFactory(tilePrefabs, gridLayoutSettings));
+            Services.Register<EnemiesFactory>(new EnemiesFactory(enemyPrefabsSettings));
             Services.Register<PlayerInputService>(new PlayerInputService());
         }
     }
