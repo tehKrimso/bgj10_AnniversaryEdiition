@@ -56,6 +56,7 @@ namespace Infrastructure
         public void GameLost()
         {
             StopAllCoroutines();
+            _towerManager.SetTowersActive(false);
             foreach (BaseEnemy enemy in _activeEnemies)
             {
                 enemy.StopMovement();
@@ -68,15 +69,11 @@ namespace Infrastructure
             _spawnerController.SetActiveRoads(cycle.activeRoadsCount);
             
             _cycleCoroutine = StartCoroutine(RunCycle(cycle));
-            
-            // var pack = cycle.enemyPacks[_currentPackIndex];
-            // _currentCycleIndex++;
-            // _spawnerController.StartPackSpawning(pack);
         }
 
         private IEnumerator RunCycle(FightCycle cycle)
         {
-            _cycleRunning = true;
+            OnCycleStart();
             foreach (var pack in cycle.enemyPacks)
             {
                 
@@ -84,9 +81,23 @@ namespace Infrastructure
 
                 yield return new WaitForSeconds(cycle.delayBetweenPackSpawns);
             }
+            
+            OnCycleEnd();
+        }
+
+        private void OnCycleStart()
+        {
+            _cycleRunning = true;
+            _towerManager.SetTowersActive(true);
+        }
+
+        private void OnCycleEnd()
+        {
             _cycleRunning = false;
             _currentCycleIndex++;
-            _towerManager.ValidateAllowedTowers(_fightCyclesSettings.fightCycles[_currentCycleIndex].allowedTowerTypes);
+            _towerManager.SetTowersActive(false);
+            _towerManager.
+                ValidateAllowedTowers(_fightCyclesSettings.fightCycles[_currentCycleIndex].allowedTowerTypes);
         }
 
         public void RemoveActiveEnemy(BaseEnemy component)

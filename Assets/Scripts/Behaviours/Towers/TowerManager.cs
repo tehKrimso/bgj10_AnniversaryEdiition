@@ -42,5 +42,13 @@ namespace Behaviours
                 }
             }
         }
+
+        public void SetTowersActive(bool active)
+        {
+            foreach (var tower in Towers.Values)
+            {
+                tower.SetActive(active);
+            }
+        }
     }
 }

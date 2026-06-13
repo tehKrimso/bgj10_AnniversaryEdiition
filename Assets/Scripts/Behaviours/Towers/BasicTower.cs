@@ -16,7 +16,6 @@ namespace Behaviours
 
         public override void PerformBasicAttack()
         {
-            
             Debug.Log("BasicTowerAttack");
         }
 

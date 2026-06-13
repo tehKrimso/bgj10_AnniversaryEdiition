@@ -11,10 +11,20 @@ namespace Behaviours
         public TowerParameters parameters;
         public TileBase parentTile;
 
+        protected GameLoopController _gameLoopController;
         protected float _attackTimer;
+        protected bool _isActive;
+
+        protected void Start()
+        {
+            _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
+        }
 
         protected void Update()
         {
+            if(!_isActive)
+                return;
+            
             _attackTimer += Time.deltaTime;
 
             if (_attackTimer >= parameters.AttackCooldown)
@@ -23,6 +33,8 @@ namespace Behaviours
                 _attackTimer = 0f;
             }
         }
+        
+        public void SetActive(bool active) => _isActive = active;
 
         public void SetNewTowerIndicator(bool isActive)
         {
