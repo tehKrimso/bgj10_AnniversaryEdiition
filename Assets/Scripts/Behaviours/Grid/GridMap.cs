@@ -37,6 +37,8 @@ namespace Behaviours.Grid
             
             InvestigateGraph();
         }
+        
+        public List<TileBase> GetBuildableTiles() => _buildableTiles;
 
         public TileBase GetTile(int x, int y)
         {

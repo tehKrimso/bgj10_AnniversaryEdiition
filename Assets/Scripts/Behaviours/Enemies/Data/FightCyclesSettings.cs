@@ -15,6 +15,7 @@ namespace Behaviours.Enemies
     {
         public int activeRoadsCount;
         public float delayBetweenPackSpawns;
+        public List<TowerType> allowedTowerTypes;
         public List<EnemyPack> enemyPacks;
     }
 

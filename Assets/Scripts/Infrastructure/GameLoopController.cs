@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Behaviours;
 using Behaviours.Enemies;
 using Behaviours.Grid;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Infrastructure
         private GridMap _gridMap;
         [SerializeField]
         private EnemySpawnerController _spawnerController;
+        
+        private TowerManager _towerManager;
 
         private int _currentCycleIndex;
         private bool _cycleRunning;
@@ -27,6 +30,11 @@ namespace Infrastructure
             _activeEnemies = new List<BaseEnemy>();
             _gridMap.Init();
             _spawnerController.Init(_gridMap, _activeEnemies);
+
+            _towerManager = Bootstrapper.Instance.Services.Resolve<TowerManager>();
+            _towerManager.Init(_gridMap);
+            
+            _towerManager.ValidateAllowedTowers(_fightCyclesSettings.fightCycles[_currentCycleIndex].allowedTowerTypes);
         }
 
         private void Update()
@@ -78,6 +86,7 @@ namespace Infrastructure
             }
             _cycleRunning = false;
             _currentCycleIndex++;
+            _towerManager.ValidateAllowedTowers(_fightCyclesSettings.fightCycles[_currentCycleIndex].allowedTowerTypes);
         }
 
         public void RemoveActiveEnemy(BaseEnemy component)

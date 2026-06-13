@@ -15,6 +15,7 @@ MonoBehaviour:
   fightCycles:
   - activeRoadsCount: 1
     delayBetweenPackSpawns: 3
+    allowedTowerTypes: 01000000
     enemyPacks:
     - enemyType: 1
       enemyCount: 3
@@ -24,6 +25,7 @@ MonoBehaviour:
       delayBetweenSingleEnemySpawn: 1
   - activeRoadsCount: 2
     delayBetweenPackSpawns: 2
+    allowedTowerTypes: 0100000002000000
     enemyPacks:
     - enemyType: 1
       enemyCount: 2

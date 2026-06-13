@@ -187,3 +187,4 @@ MonoBehaviour:
   tilePrefabs: {fileID: 11400000, guid: 3d429655e2c0cbb49aa5f13b732c8445, type: 2}
   gridLayoutSettings: {fileID: 11400000, guid: aad597d02965e0d448a908c64df40253, type: 2}
   enemyPrefabsSettings: {fileID: 11400000, guid: 3e503482a8948a04b88bf9ddea5fe18d, type: 2}
+  towerPrefabSettings: {fileID: 11400000, guid: f7d7c495cbfbc424a99e1166ee90df5f, type: 2}
