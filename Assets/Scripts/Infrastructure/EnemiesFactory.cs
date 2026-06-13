@@ -23,8 +23,11 @@ namespace Infrastructure
 
         public BaseEnemy SpawnEnemy(EnemyType type, EnemySpawner spawner)
         {
-            var enemy = GameObject.Instantiate(_enemyPrefabs[type], spawner.transform.position, spawner.transform.rotation);
-            return enemy.GetComponent<BaseEnemy>();
+            var enemyGameObject = GameObject.Instantiate(_enemyPrefabs[type], spawner.transform.position, spawner.transform.rotation);
+            var enemyComponent = enemyGameObject.GetComponent<BaseEnemy>();
+            enemyComponent.SetPath(spawner.pathToCenter);
+            
+            return enemyComponent;
         }
     }
 }
