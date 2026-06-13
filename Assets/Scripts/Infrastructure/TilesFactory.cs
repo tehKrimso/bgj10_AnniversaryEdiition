@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Behaviours;
 using Behaviours.Grid;
 using UnityEngine;
@@ -21,10 +22,12 @@ namespace Infrastructure
             _random = new Random();
         }
 
-        public TileBase[,] BuildGrid()
+        public TileBase[,] BuildGrid(out TileBase centerTile, out List<TileBase> buildableTiles)
         {
             TileBase[,] grid = new TileBase[_layoutSettings.Width, _layoutSettings.Height];
-
+            
+            buildableTiles = new List<TileBase>();
+            centerTile = null;
             
             
             for (int x = 0; x < _layoutSettings.Width; x++)
@@ -40,6 +43,14 @@ namespace Infrastructure
                     var tileComponent = tile.GetComponent<TileBase>();
                     tileComponent.SetGridPos(x,y);
                     grid[x, y] = tileComponent;
+                    
+                    if(tileType == TileType.Center)
+                        centerTile = tileComponent;
+                    
+                    if(tileType == TileType.Ground)
+                    {
+                        buildableTiles.Add(tileComponent);
+                    }
                 }
             }
             

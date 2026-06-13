@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EnemyPrefabsSettings
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - tileType: 1
+  - enemyType: 1
     prefab: {fileID: 2717226228076688293, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
-  - tileType: 2
+  - enemyType: 1
     prefab: {fileID: 2717226228076688293, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
-  - tileType: 3
+  - enemyType: 1
     prefab: {fileID: 2717226228076688293, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
-  - tileType: 4
+  - enemyType: 1
     prefab: {fileID: 2717226228076688293, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}

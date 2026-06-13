@@ -17,7 +17,7 @@ namespace Infrastructure
         private void Start()
         {
             _gridMap.Init();
-            _spawnerController.Init();
+            _spawnerController.Init(_gridMap);
         }
 
         private void Update()
