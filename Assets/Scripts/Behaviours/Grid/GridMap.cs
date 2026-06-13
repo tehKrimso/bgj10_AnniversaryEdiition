@@ -39,7 +39,8 @@ namespace Behaviours.Grid
         }
         
         public List<TileBase> GetBuildableTiles() => _buildableTiles;
-
+        public TileBase GetCenterTile() => _centerTile;
+        
         public TileBase GetTile(int x, int y)
         {
             return _tiles[x, y];

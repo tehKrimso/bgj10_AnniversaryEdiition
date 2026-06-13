@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Behaviours.Enemies;
 using Behaviours.Grid;
 using Infrastructure;
 
@@ -48,6 +49,14 @@ namespace Behaviours
             foreach (var tower in Towers.Values)
             {
                 tower.SetActive(active);
+            }
+        }
+
+        public void RemoveEnemyFromTargetList(BaseEnemy enemy)
+        {
+            foreach (var tower in Towers.Values)
+            {
+                tower.RemoveEnemyFromTargetList(enemy);
             }
         }
     }

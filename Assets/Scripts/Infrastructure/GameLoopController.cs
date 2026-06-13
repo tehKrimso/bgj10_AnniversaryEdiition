@@ -22,8 +22,8 @@ namespace Infrastructure
         private int _currentCycleIndex;
         private bool _cycleRunning;
         private List<BaseEnemy> _activeEnemies;
-        
-        private Coroutine _cycleCoroutine;
+
+        private int _cycleEnemiesCount;
 
         private void Start()
         {
@@ -50,8 +50,15 @@ namespace Infrastructure
             {
                 Debug.Log("No enemies found");
             }
+
+            if (_cycleRunning && _cycleEnemiesCount <= 0)
+            {
+                OnCycleEnd();
+            }
             
         }
+        
+        public TileBase GetCenterTile() => _gridMap.GetCenterTile();
 
         public void GameLost()
         {
@@ -61,6 +68,12 @@ namespace Infrastructure
             {
                 enemy.StopMovement();
             }
+            Debug.Log("Game Lost");
+        }
+
+        public void GameWin()
+        {
+            Debug.Log("Game Win");
         }
 
         private void StartNextCycle()
@@ -68,12 +81,17 @@ namespace Infrastructure
             var cycle = _fightCyclesSettings.fightCycles[_currentCycleIndex];
             _spawnerController.SetActiveRoads(cycle.activeRoadsCount);
             
-            _cycleCoroutine = StartCoroutine(RunCycle(cycle));
+            StartCoroutine(RunCycle(cycle));
         }
 
         private IEnumerator RunCycle(FightCycle cycle)
         {
             OnCycleStart();
+            foreach (var pack in cycle.enemyPacks)
+            {
+                _cycleEnemiesCount += pack.enemyCount;
+            }
+            
             foreach (var pack in cycle.enemyPacks)
             {
                 
@@ -82,7 +100,7 @@ namespace Infrastructure
                 yield return new WaitForSeconds(cycle.delayBetweenPackSpawns);
             }
             
-            OnCycleEnd();
+            //OnCycleEnd();
         }
 
         private void OnCycleStart()
@@ -96,14 +114,28 @@ namespace Infrastructure
             _cycleRunning = false;
             _currentCycleIndex++;
             _towerManager.SetTowersActive(false);
+
+            if (_currentCycleIndex >= _fightCyclesSettings.fightCycles.Count)
+            {
+                GameWin();
+                return;
+            }
+            
             _towerManager.
                 ValidateAllowedTowers(_fightCyclesSettings.fightCycles[_currentCycleIndex].allowedTowerTypes);
         }
 
         public void RemoveActiveEnemy(BaseEnemy component)
         {
+            _cycleEnemiesCount--;
             _activeEnemies.Remove(component);
+            _towerManager.RemoveEnemyFromTargetList(component);
             Destroy(component.gameObject);
+        }
+
+        public List<BaseEnemy> GetActiveEnemies()
+        {
+            return _activeEnemies;
         }
     }
 }

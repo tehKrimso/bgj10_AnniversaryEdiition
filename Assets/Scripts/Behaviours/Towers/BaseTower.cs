@@ -1,4 +1,5 @@
 ﻿using System;
+using Behaviours.Enemies;
 using Behaviours.Grid;
 using Infrastructure;
 using UnityEngine;
@@ -10,14 +11,17 @@ namespace Behaviours
         public TowerType towerType;
         public TowerParameters parameters;
         public TileBase parentTile;
+        public TowerTargetFinder targetFinder;
 
         protected GameLoopController _gameLoopController;
         protected float _attackTimer;
         protected bool _isActive;
+        protected Vector3 _centerTilePosition;
 
         protected void Start()
         {
             _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
+            _centerTilePosition = _gameLoopController.GetCenterTile().gameObject.transform.position;
         }
 
         protected void Update()
@@ -46,14 +50,19 @@ namespace Behaviours
         public abstract void PerformBasicAttack();
 
         public abstract void PerformAbility();
+
+        public void RemoveEnemyFromTargetList(BaseEnemy enemy)
+        {
+            targetFinder.RemoveFromPotentialTargets(enemy);
+        }
     }
 
     [Serializable]
     public class TowerParameters
     {
-        public float Damage;
+        public int Damage;
         public float AttackCooldown;
-        public float Range;
+        //public float Range;
         public float Multiplier;
         public float AbilityCooldown;
     }
