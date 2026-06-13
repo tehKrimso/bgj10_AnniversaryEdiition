@@ -95,11 +95,11 @@ MonoBehaviour:
   towerType: 2
   parameters:
     Damage: 0
-    AttackCooldown: 1
-    Range: 0
+    AttackCooldown: 2
     Multiplier: 0
     AbilityCooldown: 0
   parentTile: {fileID: 0}
   targetFinder: {fileID: 4375856434588877729}
   SlowRate: 0.4
+  SlowTime: 1
   FreezeTime: 1

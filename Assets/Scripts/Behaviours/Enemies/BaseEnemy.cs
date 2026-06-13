@@ -17,10 +17,16 @@ namespace Behaviours.Enemies
         
         private int _currentHealth;
         private bool _shouldMove = true;
+        private bool _isSlowed = false;
+        private bool _isFreezed = false;
         
         private List<TileBase> _waypoints;
         private int _currentWaypointIndex;
         private GameLoopController _gameLoopController;
+
+        private float _freezeTimer;
+        private float _slowTimer;
+        private float _slowRate;
 
         private void Start()
         {
@@ -59,17 +65,58 @@ namespace Behaviours.Enemies
 
             if (_currentWaypointIndex >= _waypoints.Count)
                 return;
+            
+            if(_isSlowed)
+                CheckSlow();
+            
+            if(_isFreezed)
+                CheckFreeze();
 
             if (_shouldMove)
             {
                 Vector3 targetPos = _waypoints[_currentWaypointIndex].PointToMoveTo.position;
             
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * (1 - _slowRate) * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, targetPos) <= 0.1f)
                 {
                     _currentWaypointIndex++;
                 }
+            }
+        }
+
+        public void ApplySlow(float slowRate, float slowTime)
+        {
+            Debug.Log("Applying slow");
+            _slowRate = slowRate;
+            _slowTimer = slowTime;
+            _isSlowed = true;
+        }
+
+        public void ApplyFreeze(float freezeTime)
+        {
+            _freezeTimer = freezeTime;
+            _shouldMove = false;
+            _isFreezed = true;
+        }
+
+        private void CheckSlow()
+        {
+            _slowTimer -= Time.deltaTime;
+            if (_slowTimer <= 0)
+            {
+                _slowTimer = 0f;
+                _isSlowed = false;
+            }
+        }
+
+        private void CheckFreeze()
+        {
+            _freezeTimer -= Time.deltaTime;
+            if (_freezeTimer <= 0)
+            {
+                _isFreezed = false;
+                _shouldMove =  true;
             }
         }
     }

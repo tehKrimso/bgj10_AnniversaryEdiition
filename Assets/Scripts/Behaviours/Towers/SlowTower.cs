@@ -6,6 +6,7 @@ namespace Behaviours
     public class SlowTower : BaseTower
     {
         public float SlowRate = 0.4f;
+        public float SlowTime = 1f;
         public float FreezeTime = 1f;
 
         private void Update()
@@ -14,12 +15,18 @@ namespace Behaviours
         }
         public override void PerformBasicAttack()
         {
-            Debug.Log("SlowTowerAttack");
+            foreach (var target in targetFinder.GetPotentialTargets())
+            {
+                target.ApplySlow(SlowRate, SlowTime);
+            }
         }
 
         public override void PerformAbility()
         {
-            throw new System.NotImplementedException();
+            foreach (var target in targetFinder.GetPotentialTargets())
+            {
+                target.ApplyFreeze(FreezeTime);
+            }
         }
     }
 }
