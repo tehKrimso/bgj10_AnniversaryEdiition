@@ -30,7 +30,6 @@ namespace Behaviours
                 var targetsByDistanceToCore = targets.OrderBy(t => Vector3.Distance(t.transform.position, _centerTilePosition)).ToList();
                 _mainTarget = targetsByDistanceToCore[0];
                 _secondaryTarget = targetsByDistanceToCore[1];
-                
             }
             
             _mainTarget?.TakeDamage(parameters.Damage);
@@ -43,6 +42,8 @@ namespace Behaviours
         {
             _doubleTargetTimer = DoubleTargetTime;
             _doubleTargetOn = true;
+            
+            StartAbilityCooldownTimer();
         }
 
         private void CheckDoubleTarget()

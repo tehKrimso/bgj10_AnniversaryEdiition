@@ -18,6 +18,9 @@ namespace Behaviours
         protected bool _isActive;
         protected Vector3 _centerTilePosition;
 
+        protected float _abilityCooldownTimer;
+        protected bool _abilityOnCooldown;
+
         protected void Start()
         {
             _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
@@ -54,6 +57,24 @@ namespace Behaviours
         public void RemoveEnemyFromTargetList(BaseEnemy enemy)
         {
             targetFinder.RemoveFromPotentialTargets(enemy);
+        }
+
+        protected void StartAbilityCooldownTimer()
+        {
+            _abilityCooldownTimer = parameters.AbilityCooldown;
+            _abilityOnCooldown = true;
+        }
+
+        private void CheckAbilityCooldown()
+        {
+            if (_abilityOnCooldown)
+            {
+                _abilityCooldownTimer -= Time.deltaTime;
+                if (_abilityCooldownTimer <= 0)
+                {
+                    _abilityOnCooldown = false;
+                }
+            }
         }
     }
 

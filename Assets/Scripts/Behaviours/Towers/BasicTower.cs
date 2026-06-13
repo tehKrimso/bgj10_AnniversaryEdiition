@@ -8,6 +8,7 @@ namespace Behaviours
 {
     public class BasicTower : BaseTower
     {
+        public int AoeAbilityDamage;
         private BaseEnemy _target;
 
         
@@ -34,7 +35,12 @@ namespace Behaviours
 
         public override void PerformAbility()
         {
-            throw new System.NotImplementedException();
+            foreach (BaseEnemy enemy in targetFinder.GetPotentialTargets())
+            {
+                enemy.TakeDamage(AoeAbilityDamage);
+            }
+            
+            StartAbilityCooldownTimer();
         }
 
         

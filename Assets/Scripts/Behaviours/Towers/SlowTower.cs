@@ -27,6 +27,8 @@ namespace Behaviours
             {
                 target.ApplyFreeze(FreezeTime);
             }
+            
+            StartAbilityCooldownTimer();
         }
     }
 }
