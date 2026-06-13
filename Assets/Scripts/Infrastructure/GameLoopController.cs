@@ -19,6 +19,8 @@ namespace Infrastructure
         private int _currentCycleIndex;
         private bool _cycleRunning;
         private List<BaseEnemy> _activeEnemies;
+        
+        private Coroutine _cycleCoroutine;
 
         private void Start()
         {
@@ -36,11 +38,20 @@ namespace Infrastructure
                 
             }
 
-            if (_activeEnemies.Count == 0)
+            if (_cycleRunning && _activeEnemies.Count == 0)
             {
                 Debug.Log("No enemies found");
             }
             
+        }
+
+        public void GameLost()
+        {
+            StopAllCoroutines();
+            foreach (BaseEnemy enemy in _activeEnemies)
+            {
+                enemy.StopMovement();
+            }
         }
 
         private void StartNextCycle()
@@ -48,7 +59,7 @@ namespace Infrastructure
             var cycle = _fightCyclesSettings.fightCycles[_currentCycleIndex];
             _spawnerController.SetActiveRoads(cycle.activeRoadsCount);
             
-            var cycleCoroutine = StartCoroutine(RunCycle(cycle));
+            _cycleCoroutine = StartCoroutine(RunCycle(cycle));
             
             // var pack = cycle.enemyPacks[_currentPackIndex];
             // _currentCycleIndex++;
@@ -67,6 +78,12 @@ namespace Infrastructure
             }
             _cycleRunning = false;
             _currentCycleIndex++;
+        }
+
+        public void RemoveActiveEnemy(BaseEnemy component)
+        {
+            _activeEnemies.Remove(component);
+            Destroy(component.gameObject);
         }
     }
 }

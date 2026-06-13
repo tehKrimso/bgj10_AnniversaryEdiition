@@ -7,6 +7,9 @@ namespace Infrastructure
 {
     public class Bootstrapper : MonoBehaviour
     {
+        [Header("Managers")]
+        public GameLoopController gameLoopController;
+        
         [Header("Grid Settings")]
         public TilePrefabsSettings  tilePrefabs;
         public MapTileLayoutSettings  gridLayoutSettings;
@@ -28,6 +31,7 @@ namespace Infrastructure
 
         private void RegisterServices()
         {
+            Services.Register<GameLoopController>(gameLoopController);
             Services.Register<TilesFactory>(new TilesFactory(tilePrefabs, gridLayoutSettings));
             Services.Register<EnemiesFactory>(new EnemiesFactory(enemyPrefabsSettings));
             Services.Register<PlayerInputService>(new PlayerInputService());

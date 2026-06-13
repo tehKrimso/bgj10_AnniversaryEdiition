@@ -5,6 +5,7 @@ namespace Behaviours.Grid
 {
     public class TileBase : MonoBehaviour
     {
+        public Transform PointToMoveTo;
         public Transform towerPlacementTransform;
         public TileType tileType;
         public bool buildAllowed;
