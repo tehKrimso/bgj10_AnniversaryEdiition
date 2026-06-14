@@ -41,6 +41,7 @@ namespace Behaviours
 
         private void Update()
         {
+            UpdateCooldownTimers();
             
             if (_input.LeftCLick())
             {
@@ -84,6 +85,20 @@ namespace Behaviours
                 _isMovingTower = false;
             }
             
+        }
+
+        private void UpdateCooldownTimers()
+        {
+            if (_selectedTower == null)
+            {
+                _hudController.useAbility.cooldownText.text = "0";
+                _hudController.move.cooldownText.text = "0";
+                return;
+            }
+                
+            
+            _hudController.useAbility.cooldownText.text = _selectedTower.AbilityCooldownTimer.ToString("F1");
+            _hudController.move.cooldownText.text = _selectedTower.MovementCooldownTimer.ToString("F1");
         }
 
         public void TryMoveOnInput()
@@ -175,7 +190,7 @@ namespace Behaviours
             
             ReleaseTower();
 
-            tower.SetNewTowerIndicator(false);
+            //tower.SetNewTowerIndicator(false);
             SelectTower(tower);
                 
         }

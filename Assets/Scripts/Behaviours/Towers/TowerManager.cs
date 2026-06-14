@@ -37,7 +37,7 @@ namespace Behaviours
                     int randomTileIndex = _random.Next(buildableTiles.Count);
                     var tileForNewTower = buildableTiles[randomTileIndex];
                     var newTower = _factory.SpawnTower<BaseTower>(towerType, tileForNewTower);
-                    newTower.SetNewTowerIndicator(true);
+                    //newTower.SetNewTowerIndicator(true);
                     Towers.Add(towerType, newTower);
                     buildableTiles.Remove(tileForNewTower);
                 }

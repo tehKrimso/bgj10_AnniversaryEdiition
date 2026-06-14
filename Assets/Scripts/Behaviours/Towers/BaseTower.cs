@@ -26,11 +26,15 @@ namespace Behaviours
 
         protected float _abilityCooldownTimer;
         protected bool _abilityOnCooldown;
+        
+        public float AbilityCooldownTimer => _abilityCooldownTimer;
 
 
         protected bool _isControlledByPlayer;
         protected bool _isMovementReady = true;
         protected float _movementCooldownTimer;
+        
+        public float MovementCooldownTimer => _movementCooldownTimer;
 
         protected int _additionalDamageOnControl;
 
