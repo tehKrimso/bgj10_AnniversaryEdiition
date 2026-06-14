@@ -27,13 +27,20 @@ namespace Behaviours
             if (_mainTarget == null || (_secondaryTarget == null && _doubleTargetOn))
             {
                 var targets = targetFinder.GetPotentialTargets();
+                if (targets.Count <= 0)
+                    return;
                 var targetsByDistanceToCore = targets.OrderBy(t => Vector3.Distance(t.transform.position, _centerTilePosition)).ToList();
                 _mainTarget = targetsByDistanceToCore[0];
-                _secondaryTarget = targetsByDistanceToCore[1];
+                
+                if(!_doubleTargetOn)
+                    return;
+                
+                _secondaryTarget = targets.Count > 1 ? targetsByDistanceToCore[1] : targetsByDistanceToCore[0];
             }
             
             _mainTarget?.TakeDamage(parameters.Damage + _additionalDamageOnControl);
-            _secondaryTarget?.TakeDamage(parameters.Damage + _additionalDamageOnControl);
+            if(_doubleTargetOn)
+                _secondaryTarget?.TakeDamage(parameters.Damage + _additionalDamageOnControl);
             
             Debug.Log("PowerfulTowerAttack");
         }

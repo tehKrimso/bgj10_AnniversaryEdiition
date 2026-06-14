@@ -68,5 +68,13 @@ namespace Behaviours.Enemies
             var differentSpawners = _spawners.Where(s => s.parentTile != currentSpawnerTile).ToList();
             return differentSpawners[_random.Next(0, differentSpawners.Count)].pathToCenter;
         }
+
+        public void ResetSpawners()
+        {
+            foreach (var spawner in _spawners)
+            {
+                spawner.SetActive(false);
+            }
+        }
     }
 }
