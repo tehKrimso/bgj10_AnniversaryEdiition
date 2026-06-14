@@ -10,6 +10,7 @@ namespace Behaviours
     {
         public LayerMask ClickCollisionMask;
         private GameLoopController _gameLoopController;
+        private HudController _hudController;
         private PlayerInputService _input;
         private BaseTower _selectedTower;
         private BaseTower _controlledTower;
@@ -23,7 +24,19 @@ namespace Behaviours
         {
             _camera = Camera.main;
             _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
+            _hudController = Bootstrapper.Instance.Services.Resolve<HudController>();
             _input = Bootstrapper.Instance.Services.Resolve<PlayerInputService>();
+            
+            _hudController.takeControl.button.onClick.AddListener(TakeControl);
+            _hudController.useAbility.button.onClick.AddListener(TryAbilityOnInput);
+            _hudController.move.button.onClick.AddListener(TryMoveOnInput);
+        }
+
+        private void OnDestroy()
+        {
+            _hudController.takeControl.button.onClick.RemoveListener(TakeControl);
+            _hudController.useAbility.button.onClick.RemoveListener(TryAbilityOnInput);
+            _hudController.move.button.onClick.RemoveListener(TryMoveOnInput);
         }
 
         private void Update()
@@ -51,24 +64,16 @@ namespace Behaviours
                 TakeControl();
             }
 
-            if (_input.AbilityButtonUp() && 
-                _controlledTower != null &&
-                _controlledTower.IsControlledByPlayer() &&
-                !_controlledTower.AbilityOnCooldown()
-                )
+            if (_input.AbilityButtonUp())
             {
-                _controlledTower.PerformAbility();
-            }
+                TryAbilityOnInput();
+            } 
+                
 
             //add flag?
-            if (_input.MoveButtonUp() && 
-                _controlledTower != null &&
-                _controlledTower.IsControlledByPlayer() &&
-                _controlledTower.ReadyToMove()
-                )
+            if (_input.MoveButtonUp())
             {
-                ShowBuildableTiles();
-                _isMovingTower = true;
+                TryMoveOnInput();
             }
 
             if (_input.CancelButtonDown())
@@ -79,6 +84,29 @@ namespace Behaviours
                 _isMovingTower = false;
             }
             
+        }
+
+        public void TryMoveOnInput()
+        {
+            if(_controlledTower != null &&
+               _controlledTower.IsControlledByPlayer() &&
+               _controlledTower.ReadyToMove()
+              )
+            {
+                ShowBuildableTiles();
+                _isMovingTower = true;
+            }
+        }
+
+        public void TryAbilityOnInput()
+        {
+            if(_controlledTower != null &&
+               _controlledTower.IsControlledByPlayer() &&
+               !_controlledTower.AbilityOnCooldown()
+              )
+            {
+                _controlledTower.PerformAbility();
+            }
         }
 
         private void ShowBuildableTiles()
@@ -101,6 +129,7 @@ namespace Behaviours
                 _controlledTower?.SetControlledByPlayer(false);
                 _controlledTower = _selectedTower;
                 _controlledTower.SetControlledByPlayer(true);
+                _hudController.SetActiveTowerButtons(true);
             }
         }
 

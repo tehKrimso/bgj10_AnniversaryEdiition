@@ -1,4 +1,5 @@
 ﻿using System;
+using Behaviours;
 using UnityEngine;
 
 namespace Infrastructure
@@ -6,10 +7,12 @@ namespace Infrastructure
     public class PlayerInputService : IService
     {
         private readonly Camera _camera;
+        private HudController _hudController;
 
         public PlayerInputService()
         {
             _camera = Camera.main;
+            _hudController = Bootstrapper.Instance.Services.Resolve<HudController>();
         }
 
         public bool LeftCLick()

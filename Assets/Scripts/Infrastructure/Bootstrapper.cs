@@ -11,6 +11,7 @@ namespace Infrastructure
     {
         [Header("Managers")]
         public GameLoopController gameLoopController;
+        public HudController hudController;
         
         [Header("Grid Settings")]
         public TilePrefabsSettings  tilePrefabs;
@@ -37,6 +38,7 @@ namespace Infrastructure
         private void RegisterServices()
         {
             Services.Register<GameLoopController>(gameLoopController);
+            Services.Register<HudController>(hudController);
             Services.Register<TilesFactory>(new TilesFactory(tilePrefabs, gridLayoutSettings));
             Services.Register<EnemiesFactory>(new EnemiesFactory(enemyPrefabsSettings));
             Services.Register<TowersFactory>(new TowersFactory(towerPrefabSettings));
