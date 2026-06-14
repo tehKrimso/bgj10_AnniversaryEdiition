@@ -36,11 +36,13 @@ namespace Behaviours
 
         public override void PerformAbility()
         {
-            foreach (BaseEnemy enemy in targetFinder.GetPotentialTargets())
+            var targets = new List<BaseEnemy>(targetFinder.GetPotentialTargets());
+            
+            foreach (BaseEnemy enemy in targets)
             {
                 enemy.TakeDamage(AoeAbilityDamage);
             }
-            
+            Debug.Log("BasicTowerAbility");
             StartAbilityCooldownTimer();
         }
 

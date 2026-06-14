@@ -38,7 +38,6 @@ namespace Behaviours
                         return;
                     }
                     
-                    ReleaseTower();
                     TrySelectTower();
                     return;
                 }
@@ -143,6 +142,8 @@ namespace Behaviours
             
             if(!hit.collider.TryGetComponent(out BaseTower tower))
                 return;
+            
+            ReleaseTower();
 
             tower.SetNewTowerIndicator(false);
             SelectTower(tower);
