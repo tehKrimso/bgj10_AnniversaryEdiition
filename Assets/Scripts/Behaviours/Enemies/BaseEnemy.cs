@@ -16,19 +16,19 @@ namespace Behaviours.Enemies
         public bool IsDead => _currentHealth <= 0;
         
         private int _currentHealth;
-        private bool _shouldMove = true;
+        protected bool _shouldMove = true;
         private bool _isSlowed = false;
         private bool _isFreezed = false;
         
-        private List<TileBase> _waypoints;
-        private int _currentWaypointIndex;
-        private GameLoopController _gameLoopController;
+        protected List<TileBase> _waypoints;
+        protected int _currentWaypointIndex;
+        protected GameLoopController _gameLoopController;
 
         private float _freezeTimer;
         private float _slowTimer;
         private float _slowRate;
 
-        private void Start()
+        protected void Start()
         {
             _currentHealth = initialHealth;
             _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
@@ -56,7 +56,7 @@ namespace Behaviours.Enemies
             _shouldMove = false;
         }
 
-        private void Update()
+        protected void Update()
         {
             
             

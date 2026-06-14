@@ -8,7 +8,7 @@ namespace Behaviours
 {
     public class BasicTower : BaseTower
     {
-        public int AdditionalAttackSpeedOnControl;
+        //public int AdditionalAttackSpeedOnControl;
         public int AoeAbilityDamage;
         private BaseEnemy _target;
 

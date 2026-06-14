@@ -11,6 +11,8 @@ namespace Behaviours.Grid
         public TileType tileType;
         public bool buildAllowed;
         public bool IsOccupied => _placedTower != null;
+        public GameObject TeleportationIndicator;
+
         private Vector2Int _gridPosition;
         private BaseTower _placedTower;
 

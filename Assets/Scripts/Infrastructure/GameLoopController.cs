@@ -151,5 +151,10 @@ namespace Infrastructure
         {
             return _activeEnemies;
         }
+
+        public List<TileBase> GetNewPath(TileBase currentSpawnerTile)
+        {
+            return _spawnerController.GetDifferentPath(currentSpawnerTile);
+        }
     }
 }

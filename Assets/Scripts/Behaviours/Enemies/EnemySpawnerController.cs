@@ -62,5 +62,11 @@ namespace Behaviours.Enemies
             
             spawner.isOccupide = false;
         }
+
+        public List<TileBase> GetDifferentPath(TileBase currentSpawnerTile)
+        {
+            var differentSpawners = _spawners.Where(s => s.parentTile != currentSpawnerTile).ToList();
+            return differentSpawners[_random.Next(0, differentSpawners.Count)].pathToCenter;
+        }
     }
 }
