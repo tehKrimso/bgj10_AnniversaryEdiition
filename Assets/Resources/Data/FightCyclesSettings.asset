@@ -14,22 +14,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fightCycles:
   - activeRoadsCount: 1
-    delayBetweenPackSpawns: 3
+    delayBetweenPackSpawns: 1
     allowedTowerTypes: 01000000
     enemyPacks:
     - enemyType: 1
-      enemyCount: 3
-      delayBetweenSingleEnemySpawn: 1
-    - enemyType: 2
-      enemyCount: 5
+      enemyCount: 10
       delayBetweenSingleEnemySpawn: 1
   - activeRoadsCount: 2
-    delayBetweenPackSpawns: 2
+    delayBetweenPackSpawns: 1
     allowedTowerTypes: 0100000002000000
     enemyPacks:
     - enemyType: 1
-      enemyCount: 2
+      enemyCount: 13
       delayBetweenSingleEnemySpawn: 1
     - enemyType: 1
+      enemyCount: 12
+      delayBetweenSingleEnemySpawn: 1
+  - activeRoadsCount: 2
+    delayBetweenPackSpawns: 2
+    allowedTowerTypes: 010000000200000003000000
+    enemyPacks:
+    - enemyType: 1
+      enemyCount: 13
+      delayBetweenSingleEnemySpawn: 1
+    - enemyType: 1
+      enemyCount: 12
+      delayBetweenSingleEnemySpawn: 1
+    - enemyType: 2
+      enemyCount: 3
+      delayBetweenSingleEnemySpawn: 3
+  - activeRoadsCount: 3
+    delayBetweenPackSpawns: 2
+    allowedTowerTypes: 010000000200000003000000
+    enemyPacks:
+    - enemyType: 1
+      enemyCount: 13
+      delayBetweenSingleEnemySpawn: 1
+    - enemyType: 1
+      enemyCount: 12
+      delayBetweenSingleEnemySpawn: 1
+    - enemyType: 2
+      enemyCount: 3
+      delayBetweenSingleEnemySpawn: 3
+    - enemyType: 3
       enemyCount: 2
+      delayBetweenSingleEnemySpawn: 4
+  - activeRoadsCount: 4
+    delayBetweenPackSpawns: 2
+    allowedTowerTypes: 010000000200000003000000
+    enemyPacks:
+    - enemyType: 4
+      enemyCount: 1
       delayBetweenSingleEnemySpawn: 1
