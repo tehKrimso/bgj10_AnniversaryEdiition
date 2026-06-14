@@ -155,7 +155,7 @@ namespace Behaviours
         {
             Ray ray =  _camera.ScreenPointToRay(_input.GetMousePosition());
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ClickCollisionMask))
                 return;
             
             if(!hit.collider.TryGetComponent(out TileBase tile))
