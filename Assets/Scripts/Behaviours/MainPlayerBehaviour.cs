@@ -51,11 +51,20 @@ namespace Behaviours
                 TakeControl();
             }
 
+            if (_input.AbilityButtonUp() && 
+                _controlledTower != null &&
+                _controlledTower.IsControlledByPlayer() &&
+                !_controlledTower.AbilityOnCooldown()
+                )
+            {
+                _controlledTower.PerformAbility();
+            }
+
             //add flag?
             if (_input.MoveButtonUp() && 
-                _selectedTower != null &&
-                _selectedTower.IsControlledByPlayer() &&
-                _selectedTower.ReadyToMove()
+                _controlledTower != null &&
+                _controlledTower.IsControlledByPlayer() &&
+                _controlledTower.ReadyToMove()
                 )
             {
                 ShowBuildableTiles();

@@ -32,8 +32,8 @@ namespace Behaviours
                 _secondaryTarget = targetsByDistanceToCore[1];
             }
             
-            _mainTarget?.TakeDamage(parameters.Damage);
-            _secondaryTarget?.TakeDamage(parameters.Damage);
+            _mainTarget?.TakeDamage(parameters.Damage + _additionalDamageOnControl);
+            _secondaryTarget?.TakeDamage(parameters.Damage + _additionalDamageOnControl);
             
             Debug.Log("PowerfulTowerAttack");
         }

@@ -29,7 +29,7 @@ namespace Behaviours
         protected bool _isMovementReady = true;
         protected float _movementCooldownTimer;
 
-        protected int _actualMultiplier;
+        protected int _additionalDamageOnControl;
 
         protected void Start()
         {
@@ -46,7 +46,7 @@ namespace Behaviours
             
             _attackTimer += Time.deltaTime;
 
-            if (_attackTimer >= parameters.AttackCooldown)
+            if (_attackTimer >= parameters.AttackCooldown - (_isControlledByPlayer ? parameters.AttackCooldownReductionOnControl : 0f))
             {
                 PerformBasicAttack();
                 _attackTimer = 0f;
@@ -64,6 +64,10 @@ namespace Behaviours
             }
             
             //check if ability ready
+            if (_abilityOnCooldown)
+            {
+                CheckAbilityCooldown();
+            }
         }
 
         public bool ReadyToMove() => _isMovementReady;
@@ -80,6 +84,17 @@ namespace Behaviours
         {
             _isControlledByPlayer = isControlledByPlayer;
             towerIndicators.controlledByPlayerIndicator.SetActive(isControlledByPlayer);
+
+            if (isControlledByPlayer) //when take control
+            {
+                targetTrigger.radius = parameters.TargetRadius + parameters.AditionalRadiusOnControl;
+                _additionalDamageOnControl = parameters.AdditionalDamageOnControl;
+            }
+            else //when release control
+            {
+                targetTrigger.radius = parameters.TargetRadius;
+                _additionalDamageOnControl = 0;
+            }
         }
 
         public void SetActive(bool active) => _isActive = active;
@@ -123,16 +138,27 @@ namespace Behaviours
                 }
             }
         }
-        
+
+        public bool AbilityOnCooldown()
+        {
+            return _abilityOnCooldown;
+        }
     }
 
     [Serializable]
     public class TowerParameters
     {
+        [Header("Damage")]
         public int Damage;
-        public float AttackCooldown;
+        public int AdditionalDamageOnControl;
+        
+        [Header("TargetRadius")]
         public float TargetRadius;
-        public float Multiplier;
+        public float AditionalRadiusOnControl;
+        
+        [Header("Cooldowns")]
+        public float AttackCooldown;
+        public float AttackCooldownReductionOnControl;
         public float AbilityCooldown;
         public float MovementCooldown;
     }
