@@ -112,11 +112,11 @@ MonoBehaviour:
   parameters:
     Damage: 0
     AdditionalDamageOnControl: 0
-    TargetRadius: 100
-    AditionalRadiusOnControl: 0
+    TargetRadius: 3.5
+    AditionalRadiusOnControl: 3.5
     AttackCooldown: 0
     AttackCooldownReductionOnControl: 0
-    AbilityCooldown: 0
+    AbilityCooldown: 12
     MovementCooldown: 5
   parentTile: {fileID: 0}
   targetFinder: {fileID: 4375856434588877729}
@@ -124,5 +124,5 @@ MonoBehaviour:
   targetTrigger: {fileID: 6898108840332182215}
   SlowRate: 0.4
   AdditionalSlowRateOnControl: 0.2
-  SlowTime: 0
-  FreezeTime: 1
+  SlowTime: 1
+  FreezeTime: 4

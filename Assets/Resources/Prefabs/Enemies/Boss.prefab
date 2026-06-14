@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageToCoreBuilding: 500
-  initialHealth: 500
+  initialHealth: 2000
   moveSpeed: 0.3
-  BossTeleportCooldown: 3
-  BossTeleportDuration: 3
+  BossTeleportCooldown: 5
+  BossTeleportDuration: 2

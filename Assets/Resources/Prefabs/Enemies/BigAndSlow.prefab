@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigAndSlow
       objectReference: {fileID: 0}
+    - target: {fileID: 3070980640911839870, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: moveSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070980640911839870, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: initialHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070980640911839870, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: DamageToCoreBuilding
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3597360189602778390, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

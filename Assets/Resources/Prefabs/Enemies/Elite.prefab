@@ -50,7 +50,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2717226228076688293, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
       propertyPath: m_Name
-      value: BaseEnemy
+      value: Elite
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070980640911839870, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: initialHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070980640911839870, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: DamageToCoreBuilding
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

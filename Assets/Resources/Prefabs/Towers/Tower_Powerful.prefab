@@ -111,13 +111,15 @@ MonoBehaviour:
   towerType: 3
   parameters:
     Damage: 50
-    AttackCooldown: 1
-    TargetRadius: 100
-    Multiplier: 0
-    AbilityCooldown: 0
+    AdditionalDamageOnControl: 0
+    TargetRadius: 4
+    AditionalRadiusOnControl: 4
+    AttackCooldown: 2
+    AttackCooldownReductionOnControl: 1
+    AbilityCooldown: 10
     MovementCooldown: 5
   parentTile: {fileID: 0}
   targetFinder: {fileID: 4375856434588877729}
   towerIndicators: {fileID: 691229302767608276}
   targetTrigger: {fileID: 6898108840332182215}
-  DoubleTargetTime: 0
+  DoubleTargetTime: 4
