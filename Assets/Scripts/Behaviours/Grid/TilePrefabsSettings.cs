@@ -13,6 +13,6 @@ namespace Behaviours.Grid
     public class PrefabForTileType
     {
         public TileType tileType;
-        public GameObject prefab;
+        public GameObject[] prefabs;
     }
 }

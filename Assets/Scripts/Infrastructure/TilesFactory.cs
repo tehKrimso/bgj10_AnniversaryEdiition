@@ -36,9 +36,9 @@ namespace Infrastructure
                 {
                     var tileType = _layoutSettings.GetTile(x, y);
                     
-                    var prefab = _tilePrefabs.prefabsForTiles.FirstOrDefault(t => t.tileType == tileType)?.prefab;
+                    var prefab = _tilePrefabs.prefabsForTiles.FirstOrDefault(t => t.tileType == tileType)?.prefabs;
                     
-                    GameObject tile = GameObject.Instantiate(prefab);
+                    GameObject tile = GameObject.Instantiate(prefab[_random.Next(prefab.Length)]);
                     tile.transform.position = new Vector3(x * _layoutSettings.TileSize + _layoutSettings.TilesOffset, 0, y * _layoutSettings.TileSize + _layoutSettings.TilesOffset);
                     var tileComponent = tile.GetComponent<TileBase>();
                     tileComponent.SetGridPos(x,y);

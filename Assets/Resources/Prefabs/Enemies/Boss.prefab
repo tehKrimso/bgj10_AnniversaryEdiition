@@ -64,10 +64,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 3193707328672384931, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 73bf4443044ff004a80e37f1727c64ad, type: 3}
     - target: {fileID: 3597360189602778390, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 072a71a92d70b3b418834f79e1736d5e, type: 2}
+    - target: {fileID: 8536164892120878689, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536164892120878689, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536164892120878689, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536164892120878689, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.413
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3070980640911839870, guid: 0340ff764fbea10418de1be3a496f9c0, type: 3}
     m_RemovedGameObjects: []

@@ -14,10 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabsForTiles:
   - tileType: 1
-    prefab: {fileID: 2955620166294695018, guid: 7022598847e11094cb1fbcbdf0535b6a, type: 3}
+    prefabs:
+    - {fileID: 2955620166294695018, guid: 7022598847e11094cb1fbcbdf0535b6a, type: 3}
+    - {fileID: 2955620166294695018, guid: 5413f8e0a5181fc4db9419359951bc45, type: 3}
   - tileType: 2
-    prefab: {fileID: 2955620166294695018, guid: 2fad4b8693cc99d4f93bf791a4fbb9d9, type: 3}
+    prefabs:
+    - {fileID: 2955620166294695018, guid: 2fad4b8693cc99d4f93bf791a4fbb9d9, type: 3}
+    - {fileID: 2955620166294695018, guid: 04e6502c0fa1aa1428bb7fd923d68ff1, type: 3}
   - tileType: 3
-    prefab: {fileID: 2955620166294695018, guid: c0384dee6dd32c2439acbcf60aa96863, type: 3}
+    prefabs:
+    - {fileID: 2955620166294695018, guid: c0384dee6dd32c2439acbcf60aa96863, type: 3}
   - tileType: 4
-    prefab: {fileID: 2955620166294695018, guid: 4a8c59e39b5379c41bf5319923cf6d36, type: 3}
+    prefabs:
+    - {fileID: 2955620166294695018, guid: 4a8c59e39b5379c41bf5319923cf6d36, type: 3}
+    - {fileID: 2955620166294695018, guid: c93d455db7163a345836dbd343af6ea9, type: 3}
