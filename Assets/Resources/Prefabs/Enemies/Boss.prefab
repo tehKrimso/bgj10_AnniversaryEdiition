@@ -97,5 +97,5 @@ MonoBehaviour:
   DamageToCoreBuilding: 500
   initialHealth: 500
   moveSpeed: 0.3
-  BossTeleportCooldown: 2
-  BossTeleportDuration: 2
+  BossTeleportCooldown: 3
+  BossTeleportDuration: 3

@@ -39,7 +39,7 @@ namespace Behaviours.Enemies
             var newPath = _gameLoopController.GetNewPath(_waypoints[0]);
 
             var currentTilesToCenter = _waypoints.Count - 1 - _currentWaypointIndex;
-            var newPathIndex = newPath.Count - 1 - _currentWaypointIndex;
+            var newPathIndex = newPath.Count - 1 - currentTilesToCenter;
             if(newPathIndex < 0)
                 newPathIndex = 0;
             var destinationTile = newPath[newPathIndex];
