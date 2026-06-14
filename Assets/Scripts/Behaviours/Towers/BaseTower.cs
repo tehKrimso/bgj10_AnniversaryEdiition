@@ -12,6 +12,9 @@ namespace Behaviours
         public TowerParameters parameters;
         public TileBase parentTile;
         public TowerTargetFinder targetFinder;
+        public TowerIndicators towerIndicators;
+
+        public SphereCollider targetTrigger;
 
         protected GameLoopController _gameLoopController;
         protected float _attackTimer;
@@ -21,10 +24,19 @@ namespace Behaviours
         protected float _abilityCooldownTimer;
         protected bool _abilityOnCooldown;
 
+
+        protected bool _isControlledByPlayer;
+        protected bool _isMovementReady = true;
+        protected float _movementCooldownTimer;
+
+        protected int _actualMultiplier;
+
         protected void Start()
         {
+            towerIndicators = GetComponentInChildren<TowerIndicators>();
             _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
             _centerTilePosition = _gameLoopController.GetCenterTile().gameObject.transform.position;
+            targetTrigger.radius = parameters.TargetRadius;
         }
 
         protected void Update()
@@ -39,15 +51,50 @@ namespace Behaviours
                 PerformBasicAttack();
                 _attackTimer = 0f;
             }
+
+            //check if movmeent ready
+            if (!_isMovementReady)
+            {
+                _movementCooldownTimer -= Time.deltaTime;
+                if (_movementCooldownTimer <= 0f)
+                {
+                    _movementCooldownTimer = 0f;
+                    _isMovementReady = true;
+                }
+            }
+            
+            //check if ability ready
+        }
+
+        public bool ReadyToMove() => _isMovementReady;
+        
+        public void StartMovementCooldown()
+        {
+            _isMovementReady = false;
+            _movementCooldownTimer = parameters.MovementCooldown;
         }
         
+        public bool IsControlledByPlayer() => _isControlledByPlayer;
+        
+        public void SetControlledByPlayer(bool isControlledByPlayer)
+        {
+            _isControlledByPlayer = isControlledByPlayer;
+            towerIndicators.controlledByPlayerIndicator.SetActive(isControlledByPlayer);
+        }
+
         public void SetActive(bool active) => _isActive = active;
 
         public void SetNewTowerIndicator(bool isActive)
         {
-            //show new tower indicator
-            //hide on first click
-            //throw new NotImplementedException();
+            if(towerIndicators == null)
+                towerIndicators = GetComponentInChildren<TowerIndicators>();
+            
+            towerIndicators.newTowerIndicator.SetActive(isActive);
+        }
+
+        public void SetSelectedTowerIndicator(bool isActive)
+        {
+            towerIndicators.selectedTowerIndicator.SetActive(isActive);
         }
 
         public abstract void PerformBasicAttack();
@@ -76,6 +123,7 @@ namespace Behaviours
                 }
             }
         }
+        
     }
 
     [Serializable]
@@ -83,8 +131,9 @@ namespace Behaviours
     {
         public int Damage;
         public float AttackCooldown;
-        //public float Range;
+        public float TargetRadius;
         public float Multiplier;
         public float AbilityCooldown;
+        public float MovementCooldown;
     }
 }

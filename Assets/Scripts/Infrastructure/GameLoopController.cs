@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Behaviours;
 using Behaviours.Enemies;
 using Behaviours.Grid;
@@ -58,7 +59,20 @@ namespace Infrastructure
             
         }
         
+        public bool IsCycleRunning() => _cycleRunning;
+        
         public TileBase GetCenterTile() => _gridMap.GetCenterTile();
+
+        public List<TileBase> GetFreeTilesToBuild()
+        {
+            var tiles = _gridMap.GetBuildableTiles().Where(t => !t.IsOccupied).ToList();
+            foreach (var tile in tiles)
+            {
+                tile.SetBuildableIndicator(true);
+            }
+            
+            return tiles;
+        }
 
         public void GameLost()
         {

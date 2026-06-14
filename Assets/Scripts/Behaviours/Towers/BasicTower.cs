@@ -8,6 +8,8 @@ namespace Behaviours
 {
     public class BasicTower : BaseTower
     {
+        public int AdditionalAttackSpeedOnControl;
+        public int AdditionalRadiusOnControl;
         public int AoeAbilityDamage;
         private BaseEnemy _target;
 
@@ -28,7 +30,7 @@ namespace Behaviours
                 
             }
             
-            _target?.TakeDamage(parameters.Damage);
+            _target?.TakeDamage(parameters.Damage + _actualMultiplier);
             
             Debug.Log("BasicTowerAttack");
         }

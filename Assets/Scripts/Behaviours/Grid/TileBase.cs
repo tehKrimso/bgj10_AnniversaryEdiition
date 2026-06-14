@@ -5,6 +5,7 @@ namespace Behaviours.Grid
 {
     public class TileBase : MonoBehaviour
     {
+        public GameObject ReadyToBuildIndicator;
         public Transform PointToMoveTo;
         public Transform towerPlacementTransform;
         public TileType tileType;
@@ -18,8 +19,15 @@ namespace Behaviours.Grid
             _gridPosition = new Vector2Int(x, y);
         }
 
+        public void ResetPlacedTower()
+        {
+            _placedTower = null;
+        }
+
         public void SetPlacedTower(BaseTower tower)
         {
+            tower.parentTile?.ResetPlacedTower();
+            tower.parentTile = null;
             _placedTower = tower;
             _placedTower.transform.SetParent(towerPlacementTransform);
             _placedTower.transform.localPosition = Vector3.zero;
@@ -27,6 +35,11 @@ namespace Behaviours.Grid
         }
         
         public Vector2Int GetGridPos() => _gridPosition;
+
+        public void SetBuildableIndicator(bool activeState)
+        {
+            ReadyToBuildIndicator.SetActive(activeState);
+        }
     }
 
 
