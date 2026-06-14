@@ -1,6 +1,7 @@
 ﻿using System;
 using Behaviours.Enemies;
 using Behaviours.Grid;
+using Behaviours.Towers;
 using Infrastructure;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Behaviours
         public TileBase parentTile;
         public TowerTargetFinder targetFinder;
         public TowerIndicators towerIndicators;
+
+        public ControlVisualSwitcher visualSwitcher;
 
         public SphereCollider targetTrigger;
 
@@ -34,6 +37,7 @@ namespace Behaviours
         protected void Start()
         {
             towerIndicators = GetComponentInChildren<TowerIndicators>();
+            visualSwitcher = GetComponentInChildren<ControlVisualSwitcher>();
             _gameLoopController = Bootstrapper.Instance.Services.Resolve<GameLoopController>();
             _centerTilePosition = _gameLoopController.GetCenterTile().gameObject.transform.position;
             targetTrigger.radius = parameters.TargetRadius;
@@ -83,12 +87,16 @@ namespace Behaviours
         public void SetControlledByPlayer(bool isControlledByPlayer)
         {
             _isControlledByPlayer = isControlledByPlayer;
+            
+            
             towerIndicators.controlledByPlayerIndicator.SetActive(isControlledByPlayer);
+            visualSwitcher.SwitchControlState(isControlledByPlayer);
 
             if (isControlledByPlayer) //when take control
             {
                 targetTrigger.radius = parameters.TargetRadius + parameters.AditionalRadiusOnControl;
                 _additionalDamageOnControl = parameters.AdditionalDamageOnControl;
+                
             }
             else //when release control
             {

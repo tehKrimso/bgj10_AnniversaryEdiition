@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2885778288664670667, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 935c78c30fcf2da4cbe5d5908c30936b, type: 3}
     - target: {fileID: 3269175452470114259, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -56,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower_Slow
       objectReference: {fileID: 0}
+    - target: {fileID: 8203661444035403531, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fd243a9f0195b16438fe1e78728b2d86, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -121,6 +129,7 @@ MonoBehaviour:
   parentTile: {fileID: 0}
   targetFinder: {fileID: 4375856434588877729}
   towerIndicators: {fileID: 691229302767608276}
+  visualSwitcher: {fileID: 0}
   targetTrigger: {fileID: 6898108840332182215}
   SlowRate: 0.4
   AdditionalSlowRateOnControl: 0.2
