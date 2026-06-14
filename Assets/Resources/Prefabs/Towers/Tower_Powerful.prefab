@@ -48,14 +48,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2885778288664670667, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 20e5d98ef453d804fbbc5fc930a8542f, type: 3}
     - target: {fileID: 3269175452470114259, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5ca8568e70b8de14f979853d9db7c981, type: 2}
+    - target: {fileID: 3278461400902648332, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6042342170468772529, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
       propertyPath: m_Name
       value: Tower_Powerful
       objectReference: {fileID: 0}
+    - target: {fileID: 8203661444035403531, guid: ff3e4ec41eaf79e419337538514b17b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: faefc3f0fcd2f3d45879fac2855af423, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -121,5 +133,6 @@ MonoBehaviour:
   parentTile: {fileID: 0}
   targetFinder: {fileID: 4375856434588877729}
   towerIndicators: {fileID: 691229302767608276}
+  visualSwitcher: {fileID: 0}
   targetTrigger: {fileID: 6898108840332182215}
   DoubleTargetTime: 4
