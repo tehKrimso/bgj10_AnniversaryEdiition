@@ -134,7 +134,8 @@ namespace Infrastructure
                 GameWin();
                 return;
             }
-            
+
+            _spawnerController.ResetSpawners();
             _towerManager.
                 ValidateAllowedTowers(_fightCyclesSettings.fightCycles[_currentCycleIndex].allowedTowerTypes);
         }
